@@ -2,4 +2,8 @@ train: ../data/YOLODataset/images/train/
 val: ../data/YOLODataset/images/val/
 test: ../data/YOLODataset/images/test/
 nc: 4
+<<<<<<< HEAD
 names: ['tsuyu', 'soySauce', 'oil', 'mirin']
+=======
+names: ['tsuyu', 'soySauce', 'mirin', 'oil']
+>>>>>>> 5892f1c2b369aef538ced81f19f4f541ef13de53
