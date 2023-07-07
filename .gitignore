@@ -1,3 +1,4 @@
 yolov5x6.pt
 .idea
 testFiles
+data/trainedWeights
