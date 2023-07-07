@@ -1,8 +1,10 @@
 import json
 import os
 import numpy as np
+import cv2 as cv
 
-json_dir = "data"
+json_dir = "data/LabelMeJSON"
+image_dir = "data/YOLODataset/images/train"
         
 items = {
     'tsuyu' : 0,
@@ -11,15 +13,24 @@ items = {
     'mirin' : 3
 }
 
+def imageDimenstion(image):
+    im = cv.imread(image)
+    h, w, c = im.shape
+    return h, w
+
 def labelme2yolo():
     json_file_names = [filename for filename in os.listdir(json_dir) if filename.endswith('.json')]
     
+    
     for filename in json_file_names:
-        f = open('data/' + filename)
+        name = os.path.splitext(filename)[0] + '.png'
+        maxH, maxW = imageDimenstion(image_dir + "/" + name)
+        
+        f = open(json_dir + "/" + filename)
         data = json.load(f)
         for item in data['shapes']: # item is the list
             x, y, height, width = calculateDimension(item['points'])
-            writeFile(filename, x, y, height, width, items[item['label']])
+            writeFile(filename, x/maxW, y/maxH, height/maxH, width/maxW, items[item['label']])
         f.close()
         
         
@@ -44,12 +55,12 @@ def calculateDimension(ptsList):
 
 def writeFile(filename, x, y, h, w, label):
     name = os.path.splitext(filename)[0] + '.txt'
-    data = [label, x, y, h, w]
+    data = [label, x, y, w, h]
     with open('data/labeltxt/' + name, "a") as f:
-        for val in data:
-            f.write(str(val))
-            f.write(' ')
+        for i in range(len(data)):
+            f.write(str(data[i]))
+            if not i == len(data) - 1:
+                f.write(' ')
         f.write('\n')
-
 
 labelme2yolo()
