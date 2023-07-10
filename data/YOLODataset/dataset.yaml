@@ -1,5 +1,5 @@
 train: ../data/YOLODataset/images/train/
 val: ../data/YOLODataset/images/val/
 test: ../data/YOLODataset/images/test/
-nc: 4
-names: ['tsuyu', 'soySauce', 'oil', 'mirin']
+nc: 7
+names: ['soySauce', 'oliveOil', 'vegeOil', 'gomaOil', 'salt', 'mirin', 'vinegar']

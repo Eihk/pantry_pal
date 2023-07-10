@@ -5,10 +5,13 @@ from PIL import ImageDraw
 import numpy as np
 
 random.seed(0)
-class_name_to_id_mapping = {"SoySauce": 1,
-                            "Mirin": 3,
-                            "Tsuyu": 0,
-                            "Oil": 2}
+class_name_to_id_mapping = {"soySauce": 0,
+                            "oliveOil": 1,
+                            "vegeOil": 2,
+                            "gomaOil": 3,
+                            "salt": 4,
+                            "mirin": 5,
+                            "vinegar": 6}
 
 class_id_to_name_mapping = dict(zip(class_name_to_id_mapping.values(), class_name_to_id_mapping.keys()))
 
@@ -40,13 +43,13 @@ def plot_bounding_box(image_to_plot, annotation_list):
 
 # Get any random annotation file
 
-with open("data/labeltxt/19.txt", "r") as file:
+with open("data/YOLODataset/labels/train/29.txt", "r") as file:
     annotation_list = file.read().split("\n")[:-1]
     annotation_list = [x.split(" ") for x in annotation_list]
     annotation_list = [[float(y) for y in x] for x in annotation_list]
 
 # Load the image
-image = Image.open("data/YOLODataset/images/train/19.png")
+image = Image.open("data/YOLODataset/images/train/29.jpg")
 
 # Plot the Bounding Box
 plot_bounding_box(image, annotation_list)
