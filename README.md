@@ -9,3 +9,4 @@ Training command
 
 Test command
 >python yolov5\detect.py --weights data\trainedWeights\best.pt --source data\YOLODataset\images\val\1.png
+>python3 yolov5/pantrypal.py --weights yolov5/best.pt --source 0
